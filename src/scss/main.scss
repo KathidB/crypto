@@ -21,7 +21,9 @@ body {
   font-family: "Oswald", sans-serif;
   color: white;
 
-  background-color: rgb(172, 80, 64);
+  background: #c33764;
+  background: -webkit-linear-gradient(to bottom, #1d2671, #c33764);
+  background: linear-gradient(to bottom, #1d2671, #c33764);
 }
 
 .wrapper {
