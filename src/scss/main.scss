@@ -51,6 +51,13 @@ h1{
   text-transform: uppercase;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.445);
 }
+img{
+  padding-top: 20px;
+  display: block;
+  margin: 0 auto;
+  
+  // text-align: center;
+}
 table.darkTable td,
 table.darkTable th {
   //   border: 1px solid #4a4a4a;

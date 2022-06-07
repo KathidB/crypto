@@ -1,6 +1,8 @@
 const LINK = "https://api.cryptorank.io/v1/currencies?api_key=";
 const APIKEY = "aa82a291dee8c12608c52b1401f3d6396cb81b1919ac2093f586f4fb0531";
 
+// Każda kolumna została pobrana do poniższych zmiennych,
+// za pomocą pętli for dodajemy kolejno dane do tabeli.
 const places = document.querySelectorAll("tbody tr td:nth-child(1)");
 const names = document.querySelectorAll("tbody tr td:nth-child(2)");
 const prices = document.querySelectorAll("tbody tr td:nth-child(3)");
@@ -61,3 +63,5 @@ async function getCrypto() {
 }
 
 getCrypto();
+
+console.log("siema?");
