@@ -3,13 +3,13 @@ const APIKEY = "aa82a291dee8c12608c52b1401f3d6396cb81b1919ac2093f586f4fb0531";
 const tBody = document.querySelector("tbody");
 const btnLoadMore = document.querySelector(".load-more");
 const btnLoadLess = document.querySelector(".load-less");
-
 let newTr;
 let newTd;
 let pageOne = 10;
 let pageTwo = 10;
 
-//funkcja dodaje dynamicznie kolejne pola(10) do tabeli
+//funkcja dodaje dynamicznie kolejne pola do tabeli po wciśnięciu
+// buttona.
 
 const addMoreTableData = () => {
   for (let i = 0; i < pageOne; i++) {
@@ -101,7 +101,7 @@ const loadMoreDataOnClick = () => {
   window.scrollTo(0, document.body.scrollHeight);
 };
 
-const deleteShit = () => {
+const deleteDataRow = () => {
   deleteSome = document.querySelectorAll("tbody tr:last-child");
   deleteSome.forEach((el) => {
     pageTwo -= 1;
@@ -110,4 +110,4 @@ const deleteShit = () => {
 };
 
 btnLoadMore.addEventListener("click", loadMoreDataOnClick);
-btnLoadLess.addEventListener("click", deleteShit);
+btnLoadLess.addEventListener("click", deleteDataRow);
