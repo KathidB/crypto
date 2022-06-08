@@ -3,6 +3,8 @@ const APIKEY = "aa82a291dee8c12608c52b1401f3d6396cb81b1919ac2093f586f4fb0531";
 const tBody = document.querySelector("tbody");
 const btnLoadMore = document.querySelector(".load-more");
 const btnLoadLess = document.querySelector(".load-less");
+const btnToTheTop = document.querySelector(".to-the-top");
+const btnReset = document.querySelector(".reset-btn");
 let newTr;
 let newTd;
 let pageOne = 10;
@@ -54,7 +56,7 @@ const fetchDataToTable = () => {
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " USD";
         // zmiana 24h
         changes[i].textContent =
-          data.data[i].values.USD.percentChange24h + " %";
+          data.data[i].values.USD.percentChange24h.toFixed(2) + " %";
         if (data.data[i].values.USD.percentChange24h > 0) {
           changes[i].style.color = "#33cc33";
         } else if ((data.data[i].values.USD.percentChange24h = 0)) {
@@ -98,7 +100,6 @@ const loadMoreDataOnClick = () => {
     addMoreTableData();
     fetchDataToTable();
   }
-  window.scrollTo(0, document.body.scrollHeight);
 };
 
 const deleteDataRow = () => {
@@ -108,6 +109,14 @@ const deleteDataRow = () => {
     el.remove();
   });
 };
+const toTheTopBtn = () => {
+  window.scrollTo(0, 0);
+};
+const resetTableBtn = () => {
+  location.reload();
+};
 
 btnLoadMore.addEventListener("click", loadMoreDataOnClick);
 btnLoadLess.addEventListener("click", deleteDataRow);
+btnToTheTop.addEventListener("click", toTheTopBtn);
+btnReset.addEventListener("click", resetTableBtn);
