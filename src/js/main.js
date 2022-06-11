@@ -26,7 +26,7 @@ const addMoreTableData = () => {
   }
 };
 
-//Główna funkcja, która odpowiada za pobieranie danych z API
+// funkcja, która odpowiada za pobieranie danych z API
 // i przekazywanie ich do odpowiednich pól w tabeli.
 const fetchDataToTable = () => {
   const places = document.querySelectorAll("tbody tr td:nth-child(1)");
@@ -43,18 +43,18 @@ const fetchDataToTable = () => {
       const data = await res.json();
 
       for (let i = 0; i < pageTwo; i++) {
-        // pozycja crypto
+       
         places[i].textContent = data.data[i].rank;
-        //nazwy crypto
+     
         names[i].innerText = `${(names[i] = data.data[i].name)} | ${
           data.data[i].symbol
         }`;
-        //ceny crypto
+     
         prices[i].textContent =
           data.data[i].values.USD.price
             .toFixed(2)
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " USD";
-        // zmiana 24h
+        
         changes[i].textContent =
           data.data[i].values.USD.percentChange24h.toFixed(2) + " %";
         if (data.data[i].values.USD.percentChange24h > 0) {
@@ -64,21 +64,21 @@ const fetchDataToTable = () => {
         } else {
           changes[i].style.color = "#ff4d4d";
         }
-        //market cap
+      
         marketCap[i].textContent =
           data.data[i].values.USD.marketCap
             .toFixed(1)
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "$";
 
-        //wolumen24h
+    
         volume[i].textContent =
           data.data[i].values.USD.volume24h
             .toFixed(1)
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "$";
 
-        // circ supply
+    
         supply[i].textContent = data.data[i].circulatingSupply
           .toString()
           .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -92,6 +92,8 @@ const fetchDataToTable = () => {
 };
 fetchDataToTable();
 
+
+// zabezpiecznie aby nie dodać więcej niz 100 pól
 const loadMoreDataOnClick = () => {
   if (pageTwo >= 100) {
   } else if (pageTwo >= 91) {
