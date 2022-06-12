@@ -95,7 +95,7 @@ img {
 
 .btn-box {
   text-align: right;
-  button {
+  button, a {
     margin: 10px 0;
     padding: 7px 15px;
     font-size: 1.5rem;
@@ -107,9 +107,11 @@ img {
     text-transform: uppercase;
     color: white;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.705);
+    text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s;
   }
+  
   button:hover {
     background-color: rgba(192, 192, 192, 0.521);
   }

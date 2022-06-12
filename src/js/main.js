@@ -111,14 +111,11 @@ const deleteDataRow = () => {
     el.remove();
   });
 };
-const toTheTopBtn = () => {
-  window.scrollTo(0, 0);
-};
+
 const resetTableBtn = () => {
   location.reload();
 };
 
 btnLoadMore.addEventListener("click", loadMoreDataOnClick);
 btnLoadLess.addEventListener("click", deleteDataRow);
-btnToTheTop.addEventListener("click", toTheTopBtn);
 btnReset.addEventListener("click", resetTableBtn);
