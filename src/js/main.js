@@ -43,18 +43,17 @@ const fetchDataToTable = () => {
       const data = await res.json();
 
       for (let i = 0; i < pageTwo; i++) {
-       
         places[i].textContent = data.data[i].rank;
-     
+
         names[i].innerText = `${(names[i] = data.data[i].name)} | ${
           data.data[i].symbol
         }`;
-     
+
         prices[i].textContent =
           data.data[i].values.USD.price
             .toFixed(2)
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " USD";
-        
+
         changes[i].textContent =
           data.data[i].values.USD.percentChange24h.toFixed(2) + " %";
         if (data.data[i].values.USD.percentChange24h > 0) {
@@ -64,21 +63,19 @@ const fetchDataToTable = () => {
         } else {
           changes[i].style.color = "#ff4d4d";
         }
-      
+
         marketCap[i].textContent =
           data.data[i].values.USD.marketCap
             .toFixed(1)
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "$";
 
-    
         volume[i].textContent =
           data.data[i].values.USD.volume24h
             .toFixed(1)
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "$";
 
-    
         supply[i].textContent = data.data[i].circulatingSupply
           .toString()
           .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -92,7 +89,6 @@ const fetchDataToTable = () => {
 };
 fetchDataToTable();
 
-
 // zabezpiecznie aby nie dodać więcej niz 100 pól
 const loadMoreDataOnClick = () => {
   if (pageTwo >= 100) {
@@ -104,8 +100,9 @@ const loadMoreDataOnClick = () => {
   }
 };
 
+
 const deleteDataRow = () => {
-  deleteSome = document.querySelectorAll("tbody tr:last-child");
+  deleteSome = document.querySelectorAll("tbody tr:nth-last-child(-n+10)");
   deleteSome.forEach((el) => {
     pageTwo -= 1;
     el.remove();
