@@ -1,5 +1,5 @@
 const LINK = "https://api.cryptorank.io/v1/currencies?api_key=";
-const APIKEY = "aa82a291dee8c12608c52b1401f3d6396cb81b1919ac2093f586f4fb0531";
+const APIKEY = "b4d86d0f60d52a771a90036a62200f884de15e5f0d494c8613ff500a4b9e";
 const tBody = document.querySelector("tbody");
 const btnLoadMore = document.querySelector(".load-more");
 const btnLoadLess = document.querySelector(".load-less");
@@ -54,14 +54,18 @@ const fetchDataToTable = () => {
             .toFixed(2)
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " USD";
 
-        changes[i].textContent =
-          data.data[i].values.USD.percentChange24h.toFixed(2) + " %";
-        if (data.data[i].values.USD.percentChange24h > 0) {
-          changes[i].style.color = "#33cc33";
-        } else if ((data.data[i].values.USD.percentChange24h = 0)) {
-          changes[i].style.color = "black";
+        if (data.data[i].values.USD.percentChange24h === undefined) {
+          changes[i].textContent = "Brak danych";
         } else {
-          changes[i].style.color = "#ff4d4d";
+          changes[i].textContent =
+            data.data[i].values.USD.percentChange24h.toFixed(2) + " %";
+          if (data.data[i].values.USD.percentChange24h > 0) {
+            changes[i].style.color = "#33cc33";
+          } else if ((data.data[i].values.USD.percentChange24h = 0)) {
+            changes[i].style.color = "black";
+          } else {
+            changes[i].style.color = "#ff4d4d";
+          }
         }
 
         marketCap[i].textContent =
@@ -80,9 +84,11 @@ const fetchDataToTable = () => {
           .toString()
           .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
+
       window.scrollTo(0, document.body.scrollHeight);
-    } catch {
-      console.error("ERROR 404");
+    } catch (e) {
+      console.log(e);
+      console.error("ERROR");
     }
   }
   getCrypto();
@@ -100,7 +106,6 @@ const loadMoreDataOnClick = () => {
   }
 };
 
-
 const deleteDataRow = () => {
   deleteSome = document.querySelectorAll("tbody tr:nth-last-child(-n+10)");
   deleteSome.forEach((el) => {
@@ -109,10 +114,5 @@ const deleteDataRow = () => {
   });
 };
 
-const resetTableBtn = () => {
-  location.reload();
-};
-
 btnLoadMore.addEventListener("click", loadMoreDataOnClick);
 btnLoadLess.addEventListener("click", deleteDataRow);
-btnReset.addEventListener("click", resetTableBtn);
