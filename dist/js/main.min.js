@@ -27,7 +27,8 @@ const addMoreTableData = () => {
 };
 
 // funkcja, która odpowiada za pobieranie danych z API
-// i przekazywanie ich do odpowiednich pól w tabeli.
+// i przekazywanie ich do odpowiednich pól w tabeli
+// wraz z tymi juz dynamicznie stworzonymi.
 const fetchDataToTable = () => {
   const places = document.querySelectorAll("tbody tr td:nth-child(1)");
   const names = document.querySelectorAll("tbody tr td:nth-child(2)");
