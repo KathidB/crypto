@@ -56,13 +56,14 @@ const fetchDataToTable = () => {
 
         if (data.data[i].values.USD.percentChange24h === undefined) {
           changes[i].textContent = "Brak danych";
+          changes[i].style.color = "#ff4d4d";
         } else {
           changes[i].textContent =
             data.data[i].values.USD.percentChange24h.toFixed(2) + " %";
           if (data.data[i].values.USD.percentChange24h > 0) {
             changes[i].style.color = "#33cc33";
-          } else if ((data.data[i].values.USD.percentChange24h = 0)) {
-            changes[i].style.color = "black";
+          } else if (data.data[i].values.USD.percentChange24h == 0) {
+            changes[i].style.color = "white";
           } else {
             changes[i].style.color = "#ff4d4d";
           }
