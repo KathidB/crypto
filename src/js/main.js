@@ -4,7 +4,6 @@ const tBody = document.querySelector("tbody");
 const btnLoadMore = document.querySelector(".load-more");
 const btnLoadLess = document.querySelector(".load-less");
 const btnToTheTop = document.querySelector(".to-the-top");
-const btnReset = document.querySelector(".reset-btn");
 let newTr;
 let newTd;
 let pageOne = 10;
@@ -29,6 +28,7 @@ const addMoreTableData = () => {
 // funkcja, która odpowiada za pobieranie danych z API
 // i przekazywanie ich do odpowiednich pól w tabeli
 // wraz z tymi juz dynamicznie stworzonymi.
+
 const fetchDataToTable = () => {
   const places = document.querySelectorAll("tbody tr td:nth-child(1)");
   const names = document.querySelectorAll("tbody tr td:nth-child(2)");
@@ -89,8 +89,7 @@ const fetchDataToTable = () => {
 
       window.scrollTo(0, document.body.scrollHeight);
     } catch (e) {
-      console.log(e);
-      console.error("ERROR");
+      console.error(e);
     }
   }
   getCrypto();
@@ -99,8 +98,7 @@ fetchDataToTable();
 
 // zabezpiecznie aby nie dodać więcej niz 100 pól
 const loadMoreDataOnClick = () => {
-  if (pageTwo >= 100) {
-  } else if (pageTwo >= 91) {
+  if (pageTwo >= 91) {
   } else {
     pageTwo += 10;
     addMoreTableData();
@@ -109,11 +107,14 @@ const loadMoreDataOnClick = () => {
 };
 
 const deleteDataRow = () => {
-  deleteSome = document.querySelectorAll("tbody tr:nth-last-child(-n+10)");
-  deleteSome.forEach((el) => {
-    pageTwo -= 1;
-    el.remove();
-  });
+  if (pageTwo === 10) {
+  } else {
+    deleteSome = document.querySelectorAll("tbody tr:nth-last-child(-n+10)");
+    deleteSome.forEach((el) => {
+      pageTwo -= 1;
+      el.remove();
+    });
+  }
 };
 
 btnLoadMore.addEventListener("click", loadMoreDataOnClick);
