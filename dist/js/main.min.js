@@ -6,14 +6,14 @@ const btnLoadLess = document.querySelector(".load-less");
 const btnToTheTop = document.querySelector(".to-the-top");
 let newTr;
 let newTd;
-let pageOne = 10;
+let mainPageRows = 10;
 let pageTwo = 10;
 
 //funkcja dodaje dynamicznie kolejne pola do tabeli po wciśnięciu
 // buttona.
 
-const addMoreTableData = () => {
-  for (let i = 0; i < pageOne; i++) {
+async function addMoreTableData() {
+  for (let i = 0; i < mainPageRows; i++) {
     for (let i = 0; i < 10; i++) {
       newTr = document.createElement("tr");
     }
@@ -23,7 +23,7 @@ const addMoreTableData = () => {
       tBody.appendChild(newTr);
     }
   }
-};
+}
 
 // funkcja, która odpowiada za pobieranie danych z API
 // i przekazywanie ich do odpowiednich pól w tabeli
@@ -96,7 +96,6 @@ const fetchDataToTable = () => {
 };
 fetchDataToTable();
 
-// zabezpiecznie aby nie dodać więcej niz 100 pól
 const loadMoreDataOnClick = () => {
   if (pageTwo >= 91) {
   } else {
