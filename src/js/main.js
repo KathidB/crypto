@@ -4,6 +4,8 @@ const tBody = document.querySelector("tbody");
 const btnLoadMore = document.querySelector(".load-more");
 const btnLoadLess = document.querySelector(".load-less");
 const btnToTheTop = document.querySelector(".to-the-top");
+const btnSortChange = document.querySelector(".changeSort");
+
 let newTr;
 let newTd;
 let mainPageRows = 10;
@@ -56,7 +58,7 @@ const fetchDataToTable = () => {
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " USD";
 
         if (data.data[i].values.USD.percentChange24h === undefined) {
-          changes[i].textContent = "Brak danych";
+          changes[i].textContent = "no data";
           changes[i].style.color = "#ff4d4d";
         } else {
           changes[i].textContent =
@@ -96,7 +98,7 @@ const fetchDataToTable = () => {
 };
 fetchDataToTable();
 
-const loadMoreDataOnClick = () => {
+const checkIfReachedMaxRows = () => {
   if (pageTwo >= 91) {
   } else {
     pageTwo += 10;
@@ -116,5 +118,5 @@ const deleteDataRow = () => {
   }
 };
 
-btnLoadMore.addEventListener("click", loadMoreDataOnClick);
+btnLoadMore.addEventListener("click", checkIfReachedMaxRows);
 btnLoadLess.addEventListener("click", deleteDataRow);
