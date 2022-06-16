@@ -45,8 +45,6 @@ const fetchDataToTable = () => {
       const res = await fetch(LINK + APIKEY);
       const data = await res.json();
 
-      console.log(data.data);
-
       for (let i = 0; i < pageTwo; i++) {
         places[i].textContent = data.data[i].rank;
 
