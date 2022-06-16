@@ -1,5 +1,5 @@
 const LINK = "https://api.cryptorank.io/v1/currencies?api_key=";
-const APIKEY = "b4d86d0f60d52a771a90036a62200f884de15e5f0d494c8613ff500a4b9e";
+const APIKEY = "70f5ffd927dfd8084063c9a19d3472685876fb765be4e863ec03135dac4f";
 const tBody = document.querySelector("tbody");
 const btnLoadMore = document.querySelector(".load-more");
 const btnLoadLess = document.querySelector(".load-less");
@@ -44,6 +44,8 @@ const fetchDataToTable = () => {
     try {
       const res = await fetch(LINK + APIKEY);
       const data = await res.json();
+
+      console.log(data.data);
 
       for (let i = 0; i < pageTwo; i++) {
         places[i].textContent = data.data[i].rank;
