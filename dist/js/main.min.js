@@ -4,9 +4,6 @@ const tBody = document.querySelector("tbody");
 const btnLoadMore = document.querySelector(".load-more");
 const btnLoadLess = document.querySelector(".load-less");
 const btnToTheTop = document.querySelector(".to-the-top");
-
-let sol = [];
-
 let newTr;
 let newTd;
 let mainPageRows = 10;
@@ -93,7 +90,6 @@ const fetchDataToTable = () => {
           .toString()
           .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
-
       window.scrollTo(0, document.body.scrollHeight);
     } catch (e) {
       console.error(e);
