@@ -4,7 +4,8 @@ const tBody = document.querySelector("tbody");
 const btnLoadMore = document.querySelector(".load-more");
 const btnLoadLess = document.querySelector(".load-less");
 const btnToTheTop = document.querySelector(".to-the-top");
-const btnSortChange = document.querySelector(".changeSort");
+
+let sol = [];
 
 let newTr;
 let newTd;
