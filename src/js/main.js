@@ -1,9 +1,11 @@
-const LINK =
-  "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
+const LINK = "https://api.cryptorank.io/v1/currencies?api_key=";
+const APIKEY = "70f5ffd927dfd8084063c9a19d3472685876fb765be4e863ec03135dac4f";
 const tBody = document.querySelector("tbody");
 const btnLoadMore = document.querySelector(".load-more");
 const btnLoadLess = document.querySelector(".load-less");
 const btnToTheTop = document.querySelector(".to-the-top");
+const btnSortChange = document.querySelector(".changeSort");
+
 let newTr;
 let newTd;
 let mainPageRows = 10;
@@ -40,34 +42,30 @@ const fetchDataToTable = () => {
 
   async function getCrypto() {
     try {
-      const res = await fetch(LINK, {
-        headers: {
-          "X-CMC_PRO_API_KEY": "3c7fa65a-268d-41dc-8afa-81f191162d11",
-        },
-      });
+      const res = await fetch(LINK + APIKEY);
       const data = await res.json();
 
       for (let i = 0; i < pageTwo; i++) {
-        places[i].textContent = data.data[i].cmc_rank;
+        places[i].textContent = data.data[i].rank;
 
         names[i].innerText = `${(names[i] = data.data[i].name)} | ${
           data.data[i].symbol
         }`;
 
         prices[i].textContent =
-          data.data[i].quote.USD.price
+          data.data[i].values.USD.price
             .toFixed(2)
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " USD";
 
-        if (data.data[i].quote.USD.percent_change_24h === undefined) {
+        if (data.data[i].values.USD.percentChange24h === undefined) {
           changes[i].textContent = "no data";
           changes[i].style.color = "#ff4d4d";
         } else {
           changes[i].textContent =
-            data.data[i].quote.USD.percent_change_24h.toFixed(2) + " %";
-          if (data.data[i].quote.USD.percent_change_24h > 0) {
+            data.data[i].values.USD.percentChange24h.toFixed(2) + " %";
+          if (data.data[i].values.USD.percentChange24h > 0) {
             changes[i].style.color = "#33cc33";
-          } else if (data.data[i].quote.USD.percent_change_24h == 0) {
+          } else if (data.data[i].values.USD.percentChange24h == 0) {
             changes[i].style.color = "white";
           } else {
             changes[i].style.color = "#ff4d4d";
@@ -75,21 +73,22 @@ const fetchDataToTable = () => {
         }
 
         marketCap[i].textContent =
-          data.data[i].quote.USD.market_cap
+          data.data[i].values.USD.marketCap
             .toFixed(1)
             .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " $";
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "$";
 
         volume[i].textContent =
-          data.data[i].quote.USD.volume_24h
+          data.data[i].values.USD.volume24h
             .toFixed(1)
             .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " $";
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "$";
 
-        supply[i].textContent = data.data[i].circulating_supply
+        supply[i].textContent = data.data[i].circulatingSupply
           .toString()
           .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
+
       window.scrollTo(0, document.body.scrollHeight);
     } catch (e) {
       console.error(e);
