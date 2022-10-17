@@ -2,7 +2,7 @@
 
 <br> Tabela pobiera dane za pomocą API i zwraca je do odpowiednich pól. Dane dotyczą top 100 kryptowalut. 
 <br> Przyciski kolejno dodają lub odejmują 10 pozycji w tabeli, tworząc ich maksymalnie 100 i nie usuwając ostatnich 10. 
-<br> Tabela tworzy dynamicznie nowe pola i za pomocą API wstawia podstawia dane. 
+<br> Tabela tworzy dynamicznie nowe pola i za pomocą API podstawia dane. 
 <br> Api jest darmowe i czasem może błędnie przedstawiać dane. 
 <br> Projekt nie jest responsywny. Prace nad nim trwają. 
 
